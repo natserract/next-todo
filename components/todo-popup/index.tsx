@@ -13,8 +13,8 @@ import * as yup from 'yup';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useCallback, useState } from 'react';
-import { TODO_ITEMS } from '../../../../constant/api';
-import { post, update } from '../../../../api/API';
+import { TODO_ITEMS } from '../../constant/api';
+import { post, update } from '../../api/API';
 import { useRouter } from 'next/router';
 
 const useStyles = makeStyles(styles);

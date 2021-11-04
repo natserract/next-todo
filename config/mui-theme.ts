@@ -135,22 +135,12 @@ const overrides = {
     },
   },
 }
-
-const components = {
-  MuiButton: {
-    root: {
-      textTransform: "capitalize"
-    }
-  }
-}
-
 const theme = {
   global,
   colors,
   palette,
   typography,
   overrides,
-  components,
 } as const
 
 export default theme

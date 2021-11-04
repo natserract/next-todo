@@ -8,10 +8,10 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import { mappingColorPriority } from '../../../../utils/utils';
-import EmptyItems from '../../../../components/empty-items';
-import { TODO_ITEMS } from '../../../../constant/api';
-import { update } from '../../../../api/API';
+import { mappingColorPriority } from '../../utils/utils';
+import EmptyItems from '../empty-items';
+import { TODO_ITEMS } from '../../constant/api';
+import { update } from '../../api/API';
 import Button from '@material-ui/core/Button';
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 

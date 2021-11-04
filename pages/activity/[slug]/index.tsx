@@ -1,23 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from "next/router"
 import ActivityHeader from '../../../components/activity-header';
 import { ACTIVITY_GROUPS, TODO_ITEMS } from '../../../constant/api';
 import { get, remove } from '../../../api/API';
 import Grid from '@material-ui/core/Grid';
 import ActivityPopup from '../../../components/activity-popup';
-import styles from './styles'
-import CardItems from './todo-items';
-import TodoPopup from './todo-popup';
+import CardItems from '../../../components/todo-items';
+import TodoPopup from '../../../components/todo-popup';
 import ConfirmPopup from '../../../components/confirm-popup';
 import AlertNotification from '../../../components/alert-notification';
 
 const confirmMessage = "Apakah Anda yakin ingin menghapus item"
 
-const useStyles = makeStyles(styles)
-
 const DetailActivity = () => {
-  const cs = useStyles()
   const router = useRouter()
 
   const [activityData, setActivityData] = useState({
