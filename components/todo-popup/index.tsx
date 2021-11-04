@@ -137,8 +137,9 @@ const TodoPopup: React.FC<Props> = (props) => {
               onChange={handleSelectChange}
               data-cy={`modal-${props.type}-priority-input`}
               className={
-                `${formik.errors.title && formik.touched.title ? classes.formikErrors : null} ${classes.todoCheck}`
+                `${formik.errors.priority && formik.touched.priority ? classes.formikErrors : null} ${classes.todoCheck}`
               }
+              required
             >
               <MenuItem value="initial" disabled>Pilih Priority</MenuItem>
               <MenuItem value="very-high">Very High</MenuItem>
@@ -152,7 +153,7 @@ const TodoPopup: React.FC<Props> = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button data-cy={`modal-${props.type}-save-button`} type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
+        <Button disabled={!!formik.errors.title && !!formik.errors.priority} data-cy={`modal-${props.type}-save-button`} type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
           Simpan
         </Button>
       </DialogActions>
