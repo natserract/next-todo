@@ -4,15 +4,19 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
-import styles from './styles'
 import { useRouter } from 'next/router';
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
+import Filter from './filter';
+import styles from './styles'
 
 type Props = {
   title: string | string[];
   children: React.ReactNode;
   onClick: () => void;
   onUpdate?: () => void;
+  
+  // Only when edit action
+  setSelected: (index: number) => void
 }
 
 const useStyles = makeStyles(styles)
@@ -55,7 +59,9 @@ const ActivityHeader: React.FC<Props> = (props) => {
             />
           }
         </aside>
-        <aside>
+        <aside className={classes.asideRight}>
+          {router.route !== "/" && <Filter setSelected={props.setSelected} />}
+          
           <Button
             variant="contained"
             color="primary"

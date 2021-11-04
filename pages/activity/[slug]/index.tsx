@@ -9,6 +9,7 @@ import CardItems from '../../../components/todo-items';
 import TodoPopup from '../../../components/todo-popup';
 import ConfirmPopup from '../../../components/confirm-popup';
 import AlertNotification from '../../../components/alert-notification';
+import { sortBy } from '../../../utils/utils';
 
 const confirmMessage = "Apakah Anda yakin ingin menghapus item"
 
@@ -96,9 +97,9 @@ const DetailActivity = () => {
   const confirmDelete = useCallback(() => {
     const { id } = todoRef.current
     const url = TODO_ITEMS + `/${id}`
-    
+
     setVisibleAlert(true)
-    
+
     const onDelete = async () => {
       try {
         await remove(url)
@@ -156,9 +157,41 @@ const DetailActivity = () => {
     return <React.Fragment />
   }
 
+  const handleSetSelected = useCallback((selectedIndex: number) => {
+    const { items } = activityData
+    let _newItems: any[] = []
+
+    switch (selectedIndex) {
+      case 0:
+        _newItems = sortBy(items, { prop: "id", desc: true })
+        break;
+      case 1:
+        _newItems = sortBy(items, { prop: "id" })
+        break;
+      case 2:
+        _newItems = sortBy(items, { prop: "title" })
+        break;
+      case 3:
+        _newItems = sortBy(items, { prop: "title", desc: true })
+        break;
+      case 4:
+        _newItems = sortBy(items, { prop: "is_active", desc: true })
+        break;
+      default:
+        _newItems = sortBy(items, { prop: "id", desc: true })
+        break;
+    }
+
+    setActivityData({
+      ...activityData,
+      items: _newItems,
+    })
+  }, [activityData.items])
+
   return (
     <div role="detailActivity">
       <ActivityHeader
+        setSelected={handleSetSelected}
         title={activityData?.title || "Loading..."}
         onClick={() => setAddTodoDialog(true)}
         onUpdate={() => setEditActivityDialog(true)}

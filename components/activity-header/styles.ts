@@ -40,6 +40,26 @@ const styles = (theme: Theme) => createStyles({
     "&:hover": {
       background: 'transparent'
     }
+  },
+  asideRight: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  btnFilter: {
+    // width: 10,
+    color: "#111",
+    padding: '0',
+    // minWidth: '10px',
+    marginRight: 10,
+
+    "&  button.MuiButtonBase-root" : {
+      width: 50,
+      borderRadius: "50%",
+      height: 60,
+    },
+    "&:hover": {
+      background: 'transparent'
+    }
   }
 })
 
