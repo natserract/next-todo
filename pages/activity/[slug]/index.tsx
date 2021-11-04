@@ -28,8 +28,6 @@ const DetailActivity = () => {
   const todoItemRef = useRef('')
 
   const [loading, setLoading] = useState(false);
-  const [itemEmpty, setItemEmpty] = useState(false)
-
   const [addTodoDialog, setAddTodoDialog] = useState(false);
   const [editTodoDialog, setEditTodoDialog] = useState(false);
   const [editActivityDialog, setEditActivityDialog] = useState(false);
@@ -41,34 +39,42 @@ const DetailActivity = () => {
     id: "",
     title: "",
   })
+  const mounted = useRef(false);
 
   const fetchDataById = () => {
+    mounted.current = true
     const url = ACTIVITY_GROUPS + `/${router.query?.id}`
 
     const onFetch = async () => {
       try {
         const responses = await get(url)
 
-        setActivityData({
-          title: responses?.title,
-          items: responses?.todo_items
-        })
-        setLoading(false)
-
-        if (!responses?.todo_items.length) {
-          setItemEmpty(true)
+        if (mounted.current) {
+          setActivityData({
+            title: responses?.title,
+            items: responses?.todo_items
+          })
+          setLoading(false)
         }
 
       } catch (error) {
         console.error(error)
         setLoading(true)
+      } finally {
+        setLoading(false)
       }
     }
 
     onFetch()
   }
 
-  useEffect(fetchDataById, []);
+  useEffect(() => {
+    fetchDataById()
+
+    return () => {
+      mounted.current = false
+    }
+  }, []);
 
   const handleDetailTodo = (id: string) => {
     todoItemRef.current = id
@@ -205,8 +211,6 @@ const DetailActivity = () => {
       <Grid container spacing={3} alignItems="stretch">
         <TodoItems
           items={activityData.items}
-          itemEmpty={itemEmpty}
-          setItemEmpty={setItemEmpty}
           onEdit={handleDetailTodo}
           onDelete={handleDelete}
         />

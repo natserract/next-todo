@@ -17,8 +17,6 @@ import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 
 type Props = {
   items: Array<any>;
-  itemEmpty: boolean;
-  setItemEmpty: Function;
   onEdit: (id: string) => void;
   onDelete: (v: { id: string, title: string }) => void;
 }
@@ -78,7 +76,7 @@ const CardItems: React.FC<Props> = (props) => {
   }
 
   const renderItems = () => {
-    if (props.itemEmpty) return <EmptyItems path="../todo-empty-state.png" />
+    if (!props.items.length) return <EmptyItems path="../todo-empty-state.png" />
 
     return props.items.map((v, idx) => {
       const key = `checked_${v.id}`

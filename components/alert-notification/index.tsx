@@ -30,9 +30,9 @@ const AlertNotification: React.FC<Props> = ({ title, visibleAlert, setVisibleAle
 
   return (
     <Fade in={visibleAlert}>
-      <div role="alert" data-cy="alert-notification" className={classes.alertRoot} onClick={handleAlert}>
-        <ErrorOutlineIcon className={classes.icon} />
-        <span className={classes.title}>{title}</span>
+      <div role="alert" data-cy="modal-information" className={classes.alertRoot} onClick={handleAlert}>
+        <ErrorOutlineIcon className={classes.icon} data-cy="modal-information-icon"/>
+        <span className={classes.title} data-cy="modal-information-title">{title}</span>
       </div>
     </Fade>
   )

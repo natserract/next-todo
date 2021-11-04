@@ -96,7 +96,7 @@ const Filter: React.FC<Props> = (props) => {
         {options.map((option, index) => (
           <MenuItem
             key={option}
-            data-cy={index === selectedIndex ? 'sort-selection-selected' : null}
+            data-cy={index === selectedIndex ? 'sort-selection-selected' : 'sort-selection'}
             selected={index === selectedIndex}
             onClick={(event) => handleMenuItemClick(event, index)}
             divider

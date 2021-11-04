@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { TODO_ITEMS } from '../../constant/api';
 import { post, update } from '../../api/API';
 import { useRouter } from 'next/router';
@@ -56,6 +56,7 @@ const TodoPopup: React.FC<Props> = (props) => {
         title,
         priority,
       })
+      formik.resetForm()
     },
   })
 
@@ -84,12 +85,11 @@ const TodoPopup: React.FC<Props> = (props) => {
       } finally {
         handleClose()
         props.onRefetch()
-        formik.resetForm()
       }
     }
 
     onPost()
-  }, [handleClose, props.onRefetch, props.type])
+  }, [handleClose, props.onRefetch, props.type, props.id])
 
   const handleSelectChange = (event) => {
     setSelectState(event.target.value);
