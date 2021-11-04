@@ -150,7 +150,7 @@ const TodoPopup: React.FC<Props> = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button type="submit" onClick={() => formik.handleSubmit()} variant="contained" color="primary">
+        <Button type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
           Simpan
         </Button>
       </DialogActions>

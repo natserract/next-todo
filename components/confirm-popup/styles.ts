@@ -28,9 +28,11 @@ const styles = (theme: Theme) => createStyles({
   },
   btnCancel: {
     background: '#F4F4F4',
+    textTransform: 'capitalize',
   },
   btnSubmit: {
     background: '#ED4C5C',
+    textTransform: 'capitalize',
     color: '#fff',
 
     "&:hover": {

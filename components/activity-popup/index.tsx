@@ -132,7 +132,7 @@ const ActivityPopup: React.FC<Props> = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button type="submit" onClick={() => formik.handleSubmit()} variant="contained" color="primary">
+        <Button type="submit" style={{ textTransform: 'capitalize' }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
           {loading && <CircularProgress color="secondary" />} Simpan
         </Button>
       </DialogActions>

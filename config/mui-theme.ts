@@ -132,15 +132,25 @@ const overrides = {
       width: '110px',
       borderRadius: '30px',
       height: '40px',
-      textTransform: 'capitalize',
-    }
+    },
   },
 }
 
-export default {
+const components = {
+  MuiButton: {
+    root: {
+      textTransform: "capitalize"
+    }
+  }
+}
+
+const theme = {
   global,
   colors,
   palette,
   typography,
   overrides,
-}
+  components,
+} as const
+
+export default theme
