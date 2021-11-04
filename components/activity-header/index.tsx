@@ -16,7 +16,7 @@ type Props = {
   onUpdate?: () => void;
   
   // Only when edit action
-  setSelected: (index: number) => void
+  setSelected?: (index: number) => void
 }
 
 const useStyles = makeStyles(styles)
