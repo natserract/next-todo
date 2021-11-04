@@ -33,15 +33,15 @@ const ActivityCard: React.FC<Props> = ({ id, title, date, onDelete }) => {
   }
 
   return (
-    <Card className={classes.cardRoot}>
+    <Card className={classes.cardRoot} data-cy="activity-item">
       <CardContent className={classes.cardContentRoot} onClick={(e) => handleClick(e)}>
-        <Typography component="h3" variant="h5" className={classes.title}>
+        <Typography component="h3" variant="h5" className={classes.title} data-cy="activity-item-title">
           {title}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActRoot}>
-        <time>{date}</time>
-        <IconButton onClick={onDelete} aria-label="delete" className={classes.cardBtn}>
+        <time data-cy="activity-item-date">{date}</time>
+        <IconButton data-cy="activity-item-delete-button" onClick={onDelete} aria-label="delete" className={classes.cardBtn}>
           <DeleteIcon />
         </IconButton>
       </CardActions>

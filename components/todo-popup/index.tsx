@@ -98,7 +98,7 @@ const TodoPopup: React.FC<Props> = (props) => {
 
   return (
     <Dialog className={classes.dialog} open={props.openDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
+      <DialogTitle id="form-dialog-title" className={classes.dialogTitle} data-cy={`${props.type}-todo-title`}>
         {props.title}
 
         <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
@@ -106,7 +106,7 @@ const TodoPopup: React.FC<Props> = (props) => {
         </IconButton>
       </DialogTitle>
 
-      <DialogContent dividers className={classes.dialogContent}>
+      <DialogContent data-cy={`${props.type}-todo`} dividers className={classes.dialogContent}>
         <form onSubmit={formik.handleSubmit}>
           <div className={classes.formGroup}>
             <label htmlFor="title">Nama List Item</label>
@@ -150,7 +150,7 @@ const TodoPopup: React.FC<Props> = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
+        <Button data-cy={`${props.type}-todo-button`} type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
           Simpan
         </Button>
       </DialogActions>

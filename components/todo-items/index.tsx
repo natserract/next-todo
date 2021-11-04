@@ -84,18 +84,20 @@ const CardItems: React.FC<Props> = (props) => {
       const key = `checked_${v.id}`
 
       return (
-        <Grid item sm={12} key={key}>
+        <Grid item sm={12} key={key} data-cy="todo-item">
           <Card className={cs.root}>
             <span
               role="priority"
               className={cs.prior}
               style={{ background: mappingColorPriority(v.priority) }}
+              data-cy="todo-item-priority-indicator"
             />
 
             <div role="middle" className={cs.middle}> 
               <FormControlLabel
                 className={`${cs.formLabel} ${v.is_active === 0 ? cs.sup : null}`}
                 key={idx}
+                data-cy="todo-item-title"
                 control={
                   // Issues: Component is changing the controlled value state of Select to be uncontrolled.
                   // Solve by: https://stackoverflow.com/questions/69259429/material-ui-a-component-is-changing-the-uncontrolled-checked-state-of-switchbas
@@ -103,6 +105,7 @@ const CardItems: React.FC<Props> = (props) => {
                     color="primary"
                     checked={!!checkedState[key]}
                     onChange={handleCheckChange}
+                    data-cy="todo-item-checkbox"
                     name={key}
                   />
                 }
@@ -115,11 +118,12 @@ const CardItems: React.FC<Props> = (props) => {
                 startIcon={<CreateRoundedIcon />}
                 className={cs.btnEdit}
                 onClick={() => handleEdit(v.id)}
+                data-cy="todo-item-edit-button"
                 disableRipple
               />
             </div>
 
-            <IconButton onClick={() => handleDelete({ id: v.id, title: v.title })} aria-label="delete">
+            <IconButton data-cy="todo-item-delete-button" onClick={() => handleDelete({ id: v.id, title: v.title })} aria-label="delete">
               <DeleteOutlineIcon />
             </IconButton>
           </Card>

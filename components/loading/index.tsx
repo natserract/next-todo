@@ -14,6 +14,7 @@ const Loading = () => {
       className={classes.containerPage}
     >
       <CircularProgress
+        data-cy="loading-indicator"
         disableShrink
         size={40}
         className={classes.loading}

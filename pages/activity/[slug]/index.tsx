@@ -5,7 +5,7 @@ import { ACTIVITY_GROUPS, TODO_ITEMS } from '../../../constant/api';
 import { get, remove } from '../../../api/API';
 import Grid from '@material-ui/core/Grid';
 import ActivityPopup from '../../../components/activity-popup';
-import CardItems from '../../../components/todo-items';
+import TodoItems from '../../../components/todo-items';
 import TodoPopup from '../../../components/todo-popup';
 import ConfirmPopup from '../../../components/confirm-popup';
 import AlertNotification from '../../../components/alert-notification';
@@ -54,6 +54,10 @@ const DetailActivity = () => {
           items: responses?.todo_items
         })
         setLoading(false)
+
+        if (!responses?.todo_items.length) {
+          setItemEmpty(true)
+        }
 
       } catch (error) {
         console.error(error)
@@ -199,7 +203,7 @@ const DetailActivity = () => {
       />
 
       <Grid container spacing={3} alignItems="stretch">
-        <CardItems
+        <TodoItems
           items={activityData.items}
           itemEmpty={itemEmpty}
           setItemEmpty={setItemEmpty}

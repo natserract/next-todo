@@ -80,8 +80,9 @@ const Filter: React.FC<Props> = (props) => {
             aria-haspopup="true"
             onClick={handleClickListItem}
             variant="outlined"
+            data-cy="todo-sort-button"
           >
-            <ImportExportIcon />
+            <ImportExportIcon data-cy="todo-sort-icon" />
           </Button>
         </ListItem>
       </List>
@@ -95,14 +96,15 @@ const Filter: React.FC<Props> = (props) => {
         {options.map((option, index) => (
           <MenuItem
             key={option}
+            data-cy={index === selectedIndex ? 'sort-selection-selected' : null}
             selected={index === selectedIndex}
             onClick={(event) => handleMenuItemClick(event, index)}
             divider
           >
-            <ListItemIcon>
+            <ListItemIcon data-cy="sort-selection-icon">
               {renderIcons(index)}
             </ListItemIcon>
-            <ListItemText>
+            <ListItemText data-cy="sort-selection-title">
               {option}
             </ListItemText>
           </MenuItem>

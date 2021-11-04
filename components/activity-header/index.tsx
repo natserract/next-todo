@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 import Filter from './filter';
 import styles from './styles'
+import { toStrictLower } from '../../utils/utils';
 
 type Props = {
   title: string | string[];
@@ -24,6 +25,7 @@ const useStyles = makeStyles(styles)
 const ActivityHeader: React.FC<Props> = (props) => {
   const classes = useStyles()
   const router = useRouter()
+  const dataCy = router.route !== "/" ? 'todo' : 'activity'
 
   const handlePrevious = () => {
     router.back()
@@ -35,16 +37,17 @@ const ActivityHeader: React.FC<Props> = (props) => {
         <aside className={classes.asideLeft}>
           {router.route !== "/" &&
             <Button
+              data-cy={`${dataCy}-back-button`}
               className={classes.btnPrev}
               size="large"
-              startIcon={<ArrowBackIosRoundedIcon />}
+              startIcon={<ArrowBackIosRoundedIcon data-cy={`${dataCy}-back-button-icon`}/>}
               color="inherit"
               disableRipple
               onClick={handlePrevious}
             />
           }
 
-          <Typography className={classes.activityTitle} component="h2" variant="h4">
+          <Typography data-cy={`${dataCy}-title`} className={classes.activityTitle} component="h2" variant="h4">
             {props.title}
           </Typography>
 
@@ -52,9 +55,10 @@ const ActivityHeader: React.FC<Props> = (props) => {
             <Button
               variant="text"
               color="inherit"
-              startIcon={<CreateRoundedIcon />}
+              startIcon={<CreateRoundedIcon data-cy="todo-title-edit-button-icon"/>}
               className={classes.btnEdit}
               onClick={props.onUpdate}
+              data-cy="todo-title-edit-button"
               disableRipple
             />
           }
@@ -68,6 +72,7 @@ const ActivityHeader: React.FC<Props> = (props) => {
             startIcon={<AddIcon />}
             className={classes.btnAdd}
             onClick={props.onClick}
+            data-cy={`${dataCy}-add-button`}
           >
             Tambah
           </Button>
