@@ -30,12 +30,12 @@ const Header: React.FC = (props) => {
   const classes = useStyles();
 
   return (
-    <AppBar position="static" color="transparent" className={classes.appBar}>
+    <AppBar position="static" data-cy="header-background" color="transparent" className={classes.appBar}>
       <Toolbar>
         <Container maxWidth="md">
           <Link href="/">
             <a className={classes.title}>
-              <Typography variant="h3">
+              <Typography variant="h3" data-cy="header-title">
                 <b>To Do List App</b>
               </Typography>
             </a>

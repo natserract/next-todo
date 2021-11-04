@@ -97,8 +97,8 @@ const TodoPopup: React.FC<Props> = (props) => {
   };
 
   return (
-    <Dialog className={classes.dialog} open={props.openDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title" className={classes.dialogTitle} data-cy={`${props.type}-todo-title`}>
+    <Dialog data-cy={`modal-${props.type}`} className={classes.dialog} open={props.openDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title" className={classes.dialogTitle} data-cy={`modal-${props.type}-title`}>
         {props.title}
 
         <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
@@ -106,10 +106,10 @@ const TodoPopup: React.FC<Props> = (props) => {
         </IconButton>
       </DialogTitle>
 
-      <DialogContent data-cy={`${props.type}-todo`} dividers className={classes.dialogContent}>
+      <DialogContent data-cy={`modal-${props.type}`} dividers className={classes.dialogContent}>
         <form onSubmit={formik.handleSubmit}>
           <div className={classes.formGroup}>
-            <label htmlFor="title">Nama List Item</label>
+            <label htmlFor="title" data-cy={`modal-${props.type}-name-title`}>Nama List Item</label>
             <TextField
               rows={4}
               name="title"
@@ -118,6 +118,7 @@ const TodoPopup: React.FC<Props> = (props) => {
               variant="outlined"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              data-cy={`modal-${props.type}-name-input`}
               autoFocus
               className={
                 `${formik.errors.title && formik.touched.title ? classes.formikErrors : null} ${classes.todoInput}`
@@ -128,12 +129,13 @@ const TodoPopup: React.FC<Props> = (props) => {
           </div>
 
           <div className={classes.formGroup}>
-            <label htmlFor="priority">Priority</label>
+            <label htmlFor="priority" data-cy={`modal-${props.type}-priority-title`}>Priority</label>
             <Select
               name="priority"
               id="priority"
               value={selectState}
               onChange={handleSelectChange}
+              data-cy={`modal-${props.type}-priority-input`}
               className={
                 `${formik.errors.title && formik.touched.title ? classes.formikErrors : null} ${classes.todoCheck}`
               }
@@ -150,7 +152,7 @@ const TodoPopup: React.FC<Props> = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button data-cy={`${props.type}-todo-button`} type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
+        <Button data-cy={`modal-${props.type}-save-button`} type="submit" style={{ textTransform: 'capitalize', }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
           Simpan
         </Button>
       </DialogActions>

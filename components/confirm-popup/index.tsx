@@ -29,21 +29,21 @@ const ConfirmPopup: React.FC<Props> = ({ open, setOpen, message, onSubmit }) => 
 
   return (
     <Dialog className={classes.root} open={open}>
-      <DialogContent data-cy={`${dataCy}-modal-delete`} className={classes.content}>
-        <ErrorOutlineRoundedIcon data-cy={`${dataCy}-modal-delete-icon`} className={classes.icon}/>
+      <DialogContent data-cy="modal-delete" className={classes.content}>
+        <ErrorOutlineRoundedIcon data-cy="modal-delete-icon" className={classes.icon}/>
         <Typography 
           component="h3" 
           variant="h6" 
           className={classes.description} 
-          data-cy={`${dataCy}-modal-delete-text`}
+          data-cy="modal-delete-title"
           dangerouslySetInnerHTML={{
             __html: message
           }} 
         />
 
         <div role="actions" className={classes.action}>
-          <Button data-cy={`${dataCy}-modal-delete-cancel-button`} onClick={handleClose} className={classes.btnCancel}>Batal</Button>
-          <Button data-cy={`${dataCy}-modal-delete-confirm-button`} className={classes.btnSubmit} onClick={onSubmit}>Hapus</Button>
+          <Button data-cy={`modal-delete-cancel-button`} onClick={handleClose} className={classes.btnCancel}>Batal</Button>
+          <Button data-cy={`modal-delete-confirm-button`} className={classes.btnSubmit} onClick={onSubmit}>Hapus</Button>
         </div>
       </DialogContent>
     </Dialog>

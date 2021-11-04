@@ -99,8 +99,8 @@ const ActivityPopup: React.FC<Props> = (props) => {
   };
 
   return (
-    <Dialog className={classes.dialog} open={props.openDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title" className={classes.dialogTitle} data-cy={`${props.type}-activity-title`}>
+    <Dialog data-cy={`modal-${props.type}`} className={classes.dialog} open={props.openDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title" className={classes.dialogTitle} data-cy={`modal-${props.type}-title`}>
         {props.title}
 
         <IconButton data-cy={`${props.type}-activity-close-btn`} aria-label="close" className={classes.closeButton} onClick={handleClose}>
@@ -108,10 +108,10 @@ const ActivityPopup: React.FC<Props> = (props) => {
         </IconButton>
       </DialogTitle>
 
-      <DialogContent data-cy={`${props.type}-activity`} dividers className={classes.dialogContent}>
+      <DialogContent data-cy={`modal-${props.type}`} dividers className={classes.dialogContent}>
         <form onSubmit={formik.handleSubmit}>
           <div className={classes.formGroup}>
-            <label htmlFor="activityName">Nama Activity</label>
+            <label htmlFor="activityName" data-cy={`modal-${props.type}-name-title`}>Nama Activity</label>
             <TextField
               rows={4}
               name="activityName"
@@ -121,6 +121,7 @@ const ActivityPopup: React.FC<Props> = (props) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               autoFocus
+              data-cy={`modal-${props.type}-name-input`}
               className={
                 `${formik.errors.activityName && formik.touched.activityName ? classes.formikErrors : null} ${classes.activityNameInput}`
               }
@@ -132,7 +133,7 @@ const ActivityPopup: React.FC<Props> = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button data-cy={`${props.type}-activity-button`} type="submit" style={{ textTransform: 'capitalize' }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
+        <Button data-cy={`modal-${props.type}-save-button`} type="submit" style={{ textTransform: 'capitalize' }} onClick={() => formik.handleSubmit()} variant="contained" color="primary">
           {loading && <CircularProgress color="secondary" />} Simpan
         </Button>
       </DialogActions>
